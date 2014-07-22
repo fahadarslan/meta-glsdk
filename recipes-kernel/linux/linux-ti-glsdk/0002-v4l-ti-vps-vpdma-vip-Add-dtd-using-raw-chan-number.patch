@@ -1,0 +1,105 @@
+From a498d0cbad3f430f18fb7801d6fbbf62d0b4a776 Mon Sep 17 00:00:00 2001
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+Date: Tue, 17 Jun 2014 15:18:21 +0530
+Subject: [PATCH 2/6] v4l: ti-vps: vpdma: vip: Add dtd using raw chan number
+
+VPDMA library expects to pass enum vpdma_channel when adding
+a descriptor to the list. The channels are enumerated for VPE
+and the channel numbers and cstat register offsets are fetched
+from a lookup table indexed by the enumerated channel.
+
+VIP driver uses lot of channels for capturing from different
+slices/ports/sources. Its not possible to enumerate all channels.
+instead, driver calculates the channel number directly.
+
+Created a add_out_dtd_rawchan function which accepts the channel num
+directly and wrapped it to support previous implementation of
+add_out_dtd.
+
+Change-Id: I3782944a3ba509e2fed0919163b5698d82a114e3
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+---
+ drivers/media/platform/ti-vps/vip.c   |    2 +-
+ drivers/media/platform/ti-vps/vpdma.c |   19 ++++++++++++++-----
+ drivers/media/platform/ti-vps/vpdma.h |    4 ++++
+ 3 files changed, 19 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/media/platform/ti-vps/vip.c b/drivers/media/platform/ti-vps/vip.c
+index 0c4538d..6e4f776 100644
+--- a/drivers/media/platform/ti-vps/vip.c
++++ b/drivers/media/platform/ti-vps/vip.c
+@@ -809,7 +809,7 @@ static int add_out_dtd(struct vip_stream *stream, int srce_type)
+ 		vpdma_max_height = MAX_OUT_HEIGHT_REG2;
+ 	}
+ 
+-	vpdma_add_out_dtd(&dev->desc_list, c_rect->width,
++	vpdma_add_out_dtd_rawchan(&dev->desc_list, c_rect->width,
+ 		fmt->vpdma_fmt[plane], dma_addr,
+ 		vpdma_max_width, vpdma_max_height, channel, flags);
+ 
+diff --git a/drivers/media/platform/ti-vps/vpdma.c b/drivers/media/platform/ti-vps/vpdma.c
+index 7285dd8..05648a2 100644
+--- a/drivers/media/platform/ti-vps/vpdma.c
++++ b/drivers/media/platform/ti-vps/vpdma.c
+@@ -681,20 +681,20 @@ static void dump_dtd(struct vpdma_dtd *dtd)
+  * chan: VPDMA channel
+  * flags: VPDMA flags to configure some descriptor fileds
+  */
+-void vpdma_add_out_dtd(struct vpdma_desc_list *list, int width,
++void vpdma_add_out_dtd_rawchan(struct vpdma_desc_list *list, int width,
+ 		const struct vpdma_data_format *fmt, dma_addr_t dma_addr,
+ 		enum vpdma_max_width max_w, enum vpdma_max_height max_h,
+-		enum vpdma_channel chan, u32 flags)
++		int channel, u32 flags)
+ {
+ 	int priority = 0;
+ 	int field = 0;
+ 	int notify = 1;
+-	int channel, next_chan;
++	int next_chan;
+ 	int depth = fmt->depth;
+ 	int stride;
+ 	struct vpdma_dtd *dtd;
+ 
+-	channel = next_chan = chan_info[chan].num;
++	next_chan = channel;
+ 
+ 	if (fmt->type == VPDMA_DATA_FMT_TYPE_YUV &&
+ 			fmt->data_type == DATA_TYPE_C420)
+@@ -725,8 +725,17 @@ void vpdma_add_out_dtd(struct vpdma_desc_list *list, int width,
+ 
+ 	dump_dtd(dtd);
+ }
+-EXPORT_SYMBOL(vpdma_add_out_dtd);
++EXPORT_SYMBOL(vpdma_add_out_dtd_rawchan);
+ 
++void vpdma_add_out_dtd(struct vpdma_desc_list *list, int width,
++		const struct vpdma_data_format *fmt, dma_addr_t dma_addr,
++		enum vpdma_max_width max_w, enum vpdma_max_height max_h,
++		enum vpdma_channel chan, u32 flags)
++{
++	vpdma_add_out_dtd_rawchan(list, width, fmt, dma_addr, max_w, max_h,
++			chan_info[chan].num, flags);
++}
++EXPORT_SYMBOL(vpdma_add_out_dtd);
+ /*
+  * append an inbound data transfer descriptor to the given descriptor list,
+  * this sets up a 'memory to client' VPDMA transfer for the given VPDMA channel
+diff --git a/drivers/media/platform/ti-vps/vpdma.h b/drivers/media/platform/ti-vps/vpdma.h
+index 5bc12cf..59b2627 100644
+--- a/drivers/media/platform/ti-vps/vpdma.h
++++ b/drivers/media/platform/ti-vps/vpdma.h
+@@ -223,6 +223,10 @@ void vpdma_add_cfd_adb(struct vpdma_desc_list *list, int client,
+ 		struct vpdma_buf *adb);
+ void vpdma_add_sync_on_channel_ctd(struct vpdma_desc_list *list,
+ 		enum vpdma_channel chan);
++void vpdma_add_out_dtd_rawchan(struct vpdma_desc_list *list, int width,
++		const struct vpdma_data_format *fmt, dma_addr_t dma_addr,
++		enum vpdma_max_width max_w, enum vpdma_max_height max_h,
++		int channel, u32 flags);
+ void vpdma_add_out_dtd(struct vpdma_desc_list *list, int width,
+ 		const struct vpdma_data_format *fmt, dma_addr_t dma_addr,
+ 		enum vpdma_max_width max_w, enum vpdma_max_height max_h,
+-- 
+1.7.9.5
+

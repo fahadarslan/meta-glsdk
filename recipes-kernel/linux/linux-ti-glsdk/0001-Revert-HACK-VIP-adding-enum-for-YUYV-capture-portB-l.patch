@@ -1,0 +1,76 @@
+From 96260f609bff94cda4dcfeab246f5f6c30bdf77b Mon Sep 17 00:00:00 2001
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+Date: Tue, 17 Jun 2014 14:37:24 +0530
+Subject: [PATCH 1/6] Revert "HACK: VIP: adding enum for YUYV capture portB
+ luma"
+
+This was a temporary solution, removing now
+
+This reverts commit 6930935628c0a57adb1e9629c748ca63be5395a7.
+
+Change-Id: I8696d24e3dac787f171adfde8968d58cee46d831
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+---
+ drivers/media/platform/ti-vps/vpdma.c      |    8 --------
+ drivers/media/platform/ti-vps/vpdma.h      |    3 ---
+ drivers/media/platform/ti-vps/vpdma_priv.h |    4 ----
+ 3 files changed, 15 deletions(-)
+
+diff --git a/drivers/media/platform/ti-vps/vpdma.c b/drivers/media/platform/ti-vps/vpdma.c
+index 400b912..7285dd8 100644
+--- a/drivers/media/platform/ti-vps/vpdma.c
++++ b/drivers/media/platform/ti-vps/vpdma.c
+@@ -240,14 +240,6 @@ static const struct vpdma_channel_info chan_info[] = {
+ 		.num		= VPE_CHAN_NUM_RGB_OUT,
+ 		.cstat_offset	= VPDMA_VIP_UP_Y_CSTAT,
+ 	},
+-	[VIP_CHAN_PORTB_LUMA] = {
+-		.num		= VIP1_CHAN_NUM_PORT_B_LUMA,
+-		.cstat_offset	= VPDMA_VIP_LO_Y_CSTAT,
+-	},
+-	[VIP2_CHAN_PORTB_LUMA] = {
+-		.num		= VIP2_CHAN_NUM_PORT_B_LUMA,
+-		.cstat_offset	= VPDMA_VIP2_LO_Y_CSTAT,
+-	},
+ };
+ 
+ static u32 read_reg(struct vpdma_data *vpdma, int offset)
+diff --git a/drivers/media/platform/ti-vps/vpdma.h b/drivers/media/platform/ti-vps/vpdma.h
+index dd4c316..5bc12cf 100644
+--- a/drivers/media/platform/ti-vps/vpdma.h
++++ b/drivers/media/platform/ti-vps/vpdma.h
+@@ -159,9 +159,6 @@ enum vpdma_channel {
+ 	VPE_CHAN_LUMA_OUT,
+ 	VPE_CHAN_CHROMA_OUT,
+ 	VPE_CHAN_RGB_OUT,
+-
+-	VIP_CHAN_PORTB_LUMA = 104,
+-	VIP2_CHAN_PORTB_LUMA = 174,
+ };
+ 
+ #define VIP_CHAN_VIP2_OFFSET		70
+diff --git a/drivers/media/platform/ti-vps/vpdma_priv.h b/drivers/media/platform/ti-vps/vpdma_priv.h
+index 14a1d13..e11e70f 100644
+--- a/drivers/media/platform/ti-vps/vpdma_priv.h
++++ b/drivers/media/platform/ti-vps/vpdma_priv.h
+@@ -62,8 +62,6 @@
+ #define VPDMA_VIP_UP_UV_CSTAT		0x0394
+ #define VPDMA_VPI_CTL_CSTAT		0x03d0
+ 
+-#define VPDMA_VIP2_LO_Y_CSTAT		0x0398
+-
+ /* Reg field info for VPDMA_CLIENT_CSTAT registers */
+ #define VPDMA_CSTAT_LINE_MODE_MASK	0x03
+ #define VPDMA_CSTAT_LINE_MODE_SHIFT	8
+@@ -134,8 +132,6 @@
+ #define VIP1_CHAN_NUM_PORT_A_RGB	106
+ #define VIP1_CHAN_NUM_PORT_B_RGB	107
+ 
+-#define VIP2_CHAN_NUM_PORT_B_LUMA	174
+-
+ /*
+  * a VPDMA address data block payload for a configuration descriptor needs to
+  * have each sub block length as a multiple of 16 bytes. Therefore, the overall
+-- 
+1.7.9.5
+

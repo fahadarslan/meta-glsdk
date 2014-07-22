@@ -1,0 +1,79 @@
+From 9658bc840cd01ee38f533d884b15528a56b3a482 Mon Sep 17 00:00:00 2001
+From: Karthik Ramanan <a0393906@ti.com>
+Date: Thu, 10 Oct 2013 06:58:24 +0530
+Subject: [PATCH] weston.ini: Configuration file update
+
+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+---
+ weston.ini |   48 ++++++++++--------------------------------------
+ 1 file changed, 10 insertions(+), 38 deletions(-)
+
+diff --git a/weston.ini b/weston.ini
+index 0015255..c29b4fa 100644
+--- a/weston.ini
++++ b/weston.ini
+@@ -2,51 +2,23 @@
+ #modules=desktop-shell.so,xwayland.so
+ 
+ [shell]
+-background-image=/usr/share/backgrounds/gnome/Aqua.jpg
+ background-color=0xff002244
++background-type=tile
+ panel-color=0x90ff0000
+-locking=true
+-animation=zoom
+-#binding-modifier=ctrl
+-#num-workspaces=6
+-
+-#lockscreen-icon=/usr/share/icons/gnome/256x256/actions/lock.png
+-#lockscreen=/usr/share/backgrounds/gnome/Garden.jpg
+-#homescreen=/usr/share/backgrounds/gnome/Blinds.jpg
+-#animation=fade
+-
+-[launcher]
+-icon=/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
+-path=/usr/bin/gnome-terminal
+-
+-[launcher]
+-icon=/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
+-path=/usr/bin/weston-terminal
++#locking=true
++#animation=zoom
++binding-modifier=ctrl
++num-workspaces=6
+ 
+ [launcher]
+-icon=/usr/share/icons/hicolor/24x24/apps/google-chrome.png
+-path=/usr/bin/google-chrome
++icon=/usr/share/icons/hicolor/48x48/apps/terminal.png
++path=/usr/bin/weston-clients/weston-terminal
+ 
+ [launcher]
+-icon=/usr/share/icons/gnome/24x24/apps/arts.png
+-path=./clients/flower
++icon=/usr/share/weston/icon_window.png
++path=/usr/bin/weston-clients/flower
+ 
+ [screensaver]
+ # Uncomment path to disable screensaver
+-path=/usr/libexec/weston-screensaver
++path=/usr/libexec/weston-screenshooter
+ duration=600
+-
+-#[output]
+-#name=LVDS1
+-#mode=1680x1050
+-#transform=90
+-
+-#[output]
+-#name=VGA1
+-#mode=173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+-#transform=flipped
+-
+-#[output]
+-#name=X1
+-#mode=1024x768
+-#transform=flipped-270
+-- 
+1.7.9.5
+

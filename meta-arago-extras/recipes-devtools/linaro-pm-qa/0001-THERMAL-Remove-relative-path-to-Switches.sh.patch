@@ -1,0 +1,29 @@
+From 3cd478f3b10524a995d14880b3ead2185a24ff9c Mon Sep 17 00:00:00 2001
+From: Ravikumar Kattekola <rk@ti.com>
+Date: Thu, 13 Mar 2014 16:57:07 +0530
+Subject: [PATCH 1/1] THERMAL: Remove relative path to Switches.sh
+
+When functions.sh is sourced from a different directory
+it fails to include Switches.sh through relative path
+so remove relative path and let the system find the Switches.sh
+from PATH
+---
+ include/functions.sh |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/include/functions.sh b/include/functions.sh
+index 6d75e34..ba94ed2 100644
+--- a/include/functions.sh
++++ b/include/functions.sh
+@@ -23,7 +23,7 @@
+ #       - initial API and implementation
+ #
+ 
+-source ../Switches.sh
++source Switches.sh
+ 
+ CPU_PATH="/sys/devices/system/cpu"
+ TEST_NAME=$(basename ${0%.sh})
+-- 
+1.7.0.4
+

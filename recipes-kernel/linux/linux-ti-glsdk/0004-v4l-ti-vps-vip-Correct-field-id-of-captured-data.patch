@@ -1,0 +1,33 @@
+From c1b22e7803b765eca65ce7f037089b00fc4fa66d Mon Sep 17 00:00:00 2001
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+Date: Mon, 16 Jun 2014 14:13:20 +0530
+Subject: [PATCH 4/6] v4l: ti-vps: vip: Correct field id of captured data
+
+The dtd_get_field function returns the field_id out of a descriptor.
+If the bit is set, data for which, DMA is completed is a BOTTOM field.
+Otherwise, its a TOP field.
+
+Driver was assuming reverse, correct this
+
+Change-Id: I16329739ef737b261ec04d12220563d03749f74a
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+---
+ drivers/media/platform/ti-vps/vip.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/media/platform/ti-vps/vip.c b/drivers/media/platform/ti-vps/vip.c
+index 495d462..a0245c2 100644
+--- a/drivers/media/platform/ti-vps/vip.c
++++ b/drivers/media/platform/ti-vps/vip.c
+@@ -956,7 +956,7 @@ static void vip_process_buffer_complete(struct vip_stream *stream)
+ 		vpdma_unmap_desc_buf(dev->shared->vpdma, &dev->desc_list.buf);
+ 
+ 		fld = dtd_get_field(dev->write_desc);
+-		stream->field = fld ? V4L2_FIELD_TOP : V4L2_FIELD_BOTTOM;
++		stream->field = fld ? V4L2_FIELD_BOTTOM : V4L2_FIELD_TOP;
+ 
+ 		vpdma_map_desc_buf(dev->shared->vpdma, &dev->desc_list.buf);
+ 	}
+-- 
+1.7.9.5
+

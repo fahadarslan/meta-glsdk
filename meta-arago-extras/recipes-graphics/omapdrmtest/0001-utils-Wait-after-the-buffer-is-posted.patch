@@ -1,0 +1,55 @@
+From 2790ef8ac9815220f9f80a10c34b38744a9df14c Mon Sep 17 00:00:00 2001
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+Date: Mon, 30 Jun 2014 16:44:00 +0530
+Subject: [PATCH] utils: Wait after the buffer is posted
+
+In utils library, post_*_buffer functions call the display specific
+implementation and calls the maintain_playback_rate to force the FPS
+The wait call should happen *after* the buffers are posted, not before
+
+Correct this
+This ensures that the buffer is not reused again immediately after
+posting for display.
+
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+---
+ util/util.c |   16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/util/util.c b/util/util.c
+index f9487c7..682fba6 100644
+--- a/util/util.c
++++ b/util/util.c
+@@ -220,8 +220,12 @@ static void maintain_playback_rate(struct rate_control *p)
+ int
+ disp_post_buffer(struct display *disp, struct buffer *buf)
+ {
+-	maintain_playback_rate(&disp->rtctl);
+-	return disp->post_buffer(disp, buf);
++	int ret;
++
++	ret = disp->post_buffer(disp, buf);
++	if(!ret)
++		maintain_playback_rate(&disp->rtctl);
++	return ret;
+ }
+ 
+ /* flip to / post the specified video buffer */
+@@ -229,8 +233,12 @@ int
+ disp_post_vid_buffer(struct display *disp, struct buffer *buf,
+ 		uint32_t x, uint32_t y, uint32_t w, uint32_t h)
+ {
+-	maintain_playback_rate(&disp->rtctl);
+-	return disp->post_vid_buffer(disp, buf, x, y, w, h);
++	int ret;
++
++	ret = disp->post_vid_buffer(disp, buf, x, y, w, h);
++	if(!ret)
++		maintain_playback_rate(&disp->rtctl);
++	return ret;
+ }
+ 
+ struct buffer *
+-- 
+1.7.9.5
+
