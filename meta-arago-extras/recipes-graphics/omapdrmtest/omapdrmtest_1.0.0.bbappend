@@ -1,6 +1,6 @@
 
 BRANCH = "master"
-SRCREV = "d59b663d52aec3fd257ed686fe94834bdadc8a2a"
+SRCREV = "7f5ef532f9defd2b473894b9acf03aec14baf2a8"
 SRC_URI = "git://git.ti.com/glsdk/omapdrmtest;protocol=git;branch=${BRANCH} \
 	"
 
