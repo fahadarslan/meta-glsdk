@@ -15,3 +15,6 @@ PREFERRED_VERSION_wayland-native = "1.3.0"
 PREFERRED_VERSION_weston = "1.3.0"
 SRCIPK_PACKAGE_ARCH_pn-linux-ti-glsdk = "${MACHINE_ARCH}"
 SRCIPK_PRESERVE_GIT_pn-linux-ti-glsdk = "true"
+
+WILINK_VERSION = "WILINK-8"
+PREFERRED_PROVIDER_wpa-supplicant = "${@base_contains('WILINK_VERSION','WILINK-8','wpa-supplicant-wl18xx','wpa-supplicant',d)}"
