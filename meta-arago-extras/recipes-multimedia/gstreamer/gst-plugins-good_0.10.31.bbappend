@@ -1,5 +1,5 @@
 SRC_URI = "git://git.ti.com/glsdk/gst-plugins-good0-10.git;protocol=git"
-SRCREV = "733289614c50ff4e490d5a37ec4af3a540d1dfb9"
+SRCREV = "a44097d542f2bf219ac9dc3ef2372e58d769a8f9"
 
 LICENSE = "LGPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
