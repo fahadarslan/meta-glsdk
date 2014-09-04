@@ -1,8 +1,10 @@
-BRANCH = "glsdk_6.10"
-SRCREV = "31dddd08058ff35ca44467bc9eb86930aa245b15"
+BRANCH = "v3.12"
+SRCREV = "c7146cbea93282247d77dae93259a0af043bfba6"
 
-SRC_URI = "git://git.ti.com/glsdk/ltp-ddt.git;protocol=git;branch=${BRANCH}"
 
-PR = "r3"
+SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;protocol=git;branch=${BRANCH}"
+
+
+PR = "r10"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}:"
