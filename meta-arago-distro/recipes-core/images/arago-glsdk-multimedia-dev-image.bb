@@ -15,5 +15,7 @@ IMAGE_INSTALL += "\
     packagegroup-arago-glsdk-multimedia \
     packagegroup-arago-glsdk-dev \
     packagegroup-arago-tisdk-connectivity \
+    packagegroup-arago-test \
+    packagegroup-arago-tisdk-matrix \
     "
 export IMAGE_BASENAME = "arago-glsdk-multimedia-dev-image"
