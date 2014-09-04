@@ -10,6 +10,6 @@ COMPATIBLE_MACHINE = "omap-a15"
 inherit autotools pkgconfig
 
 SRC_URI = "git://git.ti.com/glsdk/example-applications.git;protocol=git"
-SRCREV = "95aa56d6757770165b8817845f664db9440e4a4a"
+SRCREV = "a21dd98d5686a6c4563f89966cb459158085dd1b"
 
 S = "${WORKDIR}/git"
