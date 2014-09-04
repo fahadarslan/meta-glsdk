@@ -44,7 +44,6 @@ ARAGO_GLSDK_WAYLAND = "\
     libpam \
     wayland \
     weston \
-    xkbcommon \
     "
 
 ARAGO_GLSDK_BLTSVILLE = "\

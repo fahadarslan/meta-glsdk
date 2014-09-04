@@ -11,14 +11,7 @@ ARAGO_GLSDK_DEV = "\
     openssh \
     gst-plugins-ugly \
     git \
-    nfs-utils \
     inetutils \
-    iperf \
-    bc \
-    gcc \
-    binutils \
-    autoconf \
-    nfs-utils \
     "
 
 ARAGO_GLSDK_DBG = "\
