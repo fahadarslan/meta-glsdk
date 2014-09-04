@@ -1,6 +1,6 @@
 SRC_URI = "git://git.ti.com/glsdk/gst-plugins-bad0-10.git;protocol=git"
 
-SRCREV = "f2df6f3b684f39500e22115b160191cef6d7dbaf"
+SRCREV = "a9510bef52331fee9a23a5c955dbf76ac210056a"
 
 LICENSE = "LGPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3"
