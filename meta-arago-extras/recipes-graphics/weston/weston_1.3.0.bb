@@ -22,13 +22,14 @@ SRCREV = "95659c03219b057d9d703b04cf89bc0329ce947a"
 
 S = "${WORKDIR}/git"
 
-PR = "r3"
+PR = "r6"
 
 inherit autotools pkgconfig useradd
 
-DEPENDS = "xkbcommon gdk-pixbuf pixman cairo glib-2.0 jpeg mtdev libpam"
+DEPENDS = "libxkbcommon gdk-pixbuf pixman cairo glib-2.0 jpeg mtdev libpam"
 DEPENDS += "wayland libgbm omap5-sgx-ddk-um-linux pango"
 
+COMPATIBLE_MACHINE = "dra7xx-evm"
 
 EXTRA_OECONF = "--disable-android-compositor \
                  --disable-simple-egl-clients \
