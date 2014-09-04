@@ -11,9 +11,9 @@ DEPENDS = "expat libffi wayland-native"
 EXTRA_OECONF_virtclass-native = "--disable-documentation"
 EXTRA_OECONF = "--disable-documentation --disable-scanner"
 
-DISTRO_FEATURES_append = "wayland x11"
+PR = "r3"
 
-PR = "r1"
+COMPATIBLE_MACHINE = "dra7xx-evm"
 
 SRC_URI = "git://anongit.freedesktop.org/wayland/wayland;protocol=git"
 SRC_URI_append_class-native = " file://just-scanner.patch"
