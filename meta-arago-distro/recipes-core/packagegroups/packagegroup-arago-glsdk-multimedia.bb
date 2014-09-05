@@ -23,13 +23,9 @@ ARAGO_GLSDK_MULTIMEDIA = "\
     "
 
 ARAGO_GLSDK_MULTIMEDIA_append_dra7xx-evm = "\
-   dra7xx-evm-ipumm-fw \
+   ipumm-fw \
    dspdce-fw  \
    vis \
-    "
-
-ARAGO_GLSDK_MULTIMEDIA_append_omap5-evm = "\
-   omap5-evm-ipumm-fw \
     "
 
 ARAGO_GLSDK_GSTREAMER = "\
