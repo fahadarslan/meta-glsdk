@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://DSPDCE-${PV}-Manifest.doc;md5=b8feda5a3ed8197d05993c0
 COMPATIBLE_MACHINE = "dra7xx-evm"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-SRC_URI = "ftp://swubn01.india.ti.com/AragoRepo/glsdk/dspdce/dspdce-${MACHINE}-1.00.00.04.tar.gz;protocol=ftp"
+SRC_URI = " http://downloads.ti.com/dsps/dsps_public_sw/glsdk/dspdce/1_00_00_04/exports/dspdce-${MACHINE}-1.00.00.04.tar.gz;protocol=ftp"
 
 S = "${WORKDIR}/dspdce-${MACHINE}-${PV}"
 
@@ -22,3 +22,5 @@ do_install() {
 FILES_${PN} += "${base_libdir}/firmware/${TARGET}"
 
 INSANE_SKIP_${PN} = "arch"
+
+PR = "r2"
