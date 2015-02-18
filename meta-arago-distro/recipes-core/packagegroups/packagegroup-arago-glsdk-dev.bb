@@ -8,19 +8,13 @@ inherit packagegroup
 
 ARAGO_GLSDK_DEV = "\
     gdb \
-    openssh \
-    gst-plugins-ugly \
+    dropbear \
     git \
     inetutils \
     "
 
-ARAGO_GLSDK_DBG = "\
-    libdri2-dbg \
-    "
-
 RDEPENDS_${PN} = "\
     ${ARAGO_GLSDK_DEV} \
-    ${ARAGO_GLSDK_DBG} \
     "
 
 RRECOMMENDS_${PN} = "\

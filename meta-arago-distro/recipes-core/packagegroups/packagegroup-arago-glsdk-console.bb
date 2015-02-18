@@ -15,8 +15,8 @@ ARAGO_GLSDK_CONSOLE = "\
     expat \
     omap5-sgx-ddk-um-linux \
     omap5-sgx-ddk-um-linux-dev \
+    libdrm-tests \
     omapdrm-pvr \
-    libdrm-tests \   
     "
 
 ARAGO_GLSDK_CONSOLE_append_omap5-evm = "\
@@ -28,9 +28,10 @@ ARAGO_GLSDK_CONSOLE_DEMOS = "\
     "
 
 ARAGO_GLSDK_CONSOLE_MULTIMEDIA = "\
-    gstreamer \
-    gst-plugins-base \
-    gst-plugins-good \
+    gstreamer1.0 \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
     "
 
 RDEPENDS_${PN} = "\
