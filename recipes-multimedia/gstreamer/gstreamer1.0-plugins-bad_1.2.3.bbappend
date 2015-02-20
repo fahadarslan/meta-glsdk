@@ -1,6 +1,6 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-PACKAGECONFIG = "faad"
+PACKAGECONFIG = "faad wayland"
 
 SRC_URI_append = " \
         file://0001-Added-GstDRMBufferPool-support.patch \
@@ -9,4 +9,4 @@ SRC_URI_append = " \
         file://0004-waylandsink-Removed-dependency-on-dri2.patch \
         file://0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch"
 
-PR = "r8"
+PR = "r9"
