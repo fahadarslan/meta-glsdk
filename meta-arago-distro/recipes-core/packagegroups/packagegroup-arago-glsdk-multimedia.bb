@@ -43,9 +43,6 @@ ARAGO_GLSDK_APPS = "\
     glsdk-example-apps \
     cpuloadgen \
     img-pvr-sdk \
-    visionsdk \
-    visionsdk-staticdev \
-    infoadas \
     "
 
 ARAGO_GLSDK_DEV = "\
