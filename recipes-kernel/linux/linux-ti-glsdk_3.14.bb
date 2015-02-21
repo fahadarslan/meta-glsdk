@@ -56,7 +56,7 @@ KERNEL_CONFIG_DIR = "${S}/ti_config_fragments"
 KERNEL_CONFIG_FRAGMENTS = "${KERNEL_CONFIG_DIR}/audio_display.cfg ${KERNEL_CONFIG_DIR}/baseport.cfg \
                            ${KERNEL_CONFIG_DIR}/connectivity.cfg ${KERNEL_CONFIG_DIR}/ipc.cfg \
                            ${KERNEL_CONFIG_DIR}/power.cfg ${KERNEL_CONFIG_DIR}/wlan.cfg \
-                           ${KERNEL_CONFIG_DIR}/auto.cfg"
+                           ${KERNEL_CONFIG_DIR}/system_test.cfg ${KERNEL_CONFIG_DIR}/auto.cfg"
 
 KERNEL_CONFIG_FRAGMENTS_append_ti33x = " ${KERNEL_CONFIG_DIR}/am33xx_only.cfg"
 KERNEL_CONFIG_FRAGMENTS_append_ti43x = " ${KERNEL_CONFIG_DIR}/am43xx_only.cfg"
