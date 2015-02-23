@@ -44,7 +44,7 @@ S = "${WORKDIR}/git"
 
 BRANCH = "p-ti-linux-3.14.y-glsdk"
 
-SRCREV = "00085d77d455ad6059081756b22dceba5ef0aca8"
+SRCREV = "2865b60202ac4dc9598e6dcf0e6a76381c5d7696"
 
 PV = "3.14.31"
 
