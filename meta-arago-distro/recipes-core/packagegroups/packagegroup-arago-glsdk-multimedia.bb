@@ -42,6 +42,7 @@ ARAGO_GLSDK_WAYLAND = "\
 ARAGO_GLSDK_APPS = "\
     glsdk-example-apps \
     cpuloadgen \
+    img-pvr-sdk \
     "
 
 ARAGO_GLSDK_DEV = "\

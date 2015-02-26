@@ -1,12 +1,11 @@
-DESCRIPTION = "Imagination PowerVR SDK"
-HOMEPAGE = "http://community.imgtec.com/developers/powervr/installers"
+DESCRIPTION = "Imagination PowerVR SDK binaries for Jacinto6 SoC"
 LICENSE = "TI-TSPA"
-LIC_FILES_CHKSUM = "file://LegalNotice.txt;md5=d9c0ca03b9845110090435a33eec4a33"
+LIC_FILES_CHKSUM = "file://Jacinto6-IMG-PowerVR-SDK-Manifest.pdf;md5=46bcbfc69f8837c339e15fd4a5044a8c"
 
-SRC_URI = "git://git.ti.com/glsdk/img-pvr-sdk.git;protocol=git"
-SRCREV = "edbd108d1582560429192dc0221f0a8fddea0928"
+SRC_URI = "git://git.ti.com/graphics/img-pvr-sdk.git;protocol=git"
+SRCREV = "c2456ec3f03da022fb7489d6b381a4ac26a68203"
 
-PR = "r3"
+PR = "r4"
 
 S = "${WORKDIR}/git"
 
