@@ -1,0 +1,5 @@
+MACHINE_KERNEL_PR_append = "f"
+
+SRCREV = "430673f78b79eccdf308a6bbfb524209b485d2cc"
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
