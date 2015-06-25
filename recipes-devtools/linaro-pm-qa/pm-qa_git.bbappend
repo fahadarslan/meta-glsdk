@@ -21,6 +21,7 @@ do_install () {
     do
         # Remove hardcoded relative paths
         sed -i -e 's#..\/utils\/##' ${script}
+        sed -i -e 's#\.\.\/##' ${script}
 
         script_basename=`basename ${script}`
         install -m 0755 $script ${D}${bindir}/linaro-pm-qa-include/${script_basename}
