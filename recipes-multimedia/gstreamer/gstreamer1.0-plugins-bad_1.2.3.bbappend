@@ -1,12 +1,12 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+PR = "r6"
 
 PACKAGECONFIG = "faad wayland"
 
-SRC_URI_append = " \
-        file://0001-Added-GstDRMBufferPool-support.patch \
-        file://0002-Modified-waylandsink-to-accept-NV12-format.patch \
-        file://0003-Added-KMSsink-support.patch \
-        file://0004-waylandsink-Removed-dependency-on-dri2.patch \
-        file://0005-vc1parse-and-jpegparse-Fixes-plugin-ranks.patch"
+SRCREV = "22f32534ce54035c33c8e788b46dc257621b472c"
 
-PR = "r9"
+SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git \
+          "
+
+S = "${WORKDIR}/git"
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
