@@ -29,7 +29,7 @@ KERNEL_DEVICETREE_ti33x = "am335x-evm.dtb am335x-evmsk.dtb am335x-bone.dtb am335
 KERNEL_DEVICETREE_ti43x = "am43x-epos-evm.dtb am437x-gp-evm.dtb am437x-sk-evm.dtb"
 KERNEL_DEVICETREE_beaglebone = "am335x-bone.dtb am335x-boneblack.dtb"
 KERNEL_DEVICETREE_omap5-evm = "omap5-uevm.dtb"
-KERNEL_DEVICETREE_dra7xx = "dra72-evm.dtb dra72-evm-jamr3.dtb dra72-evm-lcd10.dtb dra72-evm-lcd7.dtb dra7-evm.dtb dra7-evm-infoadas.dtb dra7-evm-jamr3.dtb dra7-evm-lcd10.dtb dra7-evm-lcd7.dtb dra7-evm-lcd7-late-attach.dtb dra7-evm-vision.dtb"
+KERNEL_DEVICETREE_dra7xx = "dra72-evm.dtb dra72-evm-lcd10.dtb dra72-evm-lcd7.dtb dra7-evm.dtb dra7-evm-lcd10.dtb dra7-evm-lcd7.dtb"
 KERNEL_DEVICETREE_am57xx-evm = "am57xx-beagle-x15.dtb"
 KERNEL_DEVICETREE_omap3 = "omap3-beagle.dtb omap3-beagle-xm.dtb omap3-evm.dtb omap3-evm-37xx.dtb am3517-evm.dtb"
 KERNEL_DEVICETREE_am3517-evm = "am3517-evm.dtb"
@@ -42,11 +42,11 @@ COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|omap3"
 
 S = "${WORKDIR}/git"
 
-BRANCH = "p-ti-linux-3.14.y-glsdk"
+BRANCH = "p-ti-linux-3.14.y-common"
 
-SRCREV = "2865b60202ac4dc9598e6dcf0e6a76381c5d7696"
+SRCREV = "4c385320c23781cf03d4e2a5caea0f5f1f33bfa7"
 
-PV = "3.14.31"
+PV = "3.14.43"
 
 # Append to the MACHINE_KERNEL_PR so that a new SRCREV will cause a rebuild
 MACHINE_KERNEL_PR_append = "d+gitr${SRCPV}"
@@ -56,8 +56,10 @@ KERNEL_CONFIG_DIR = "${S}/ti_config_fragments"
 KERNEL_CONFIG_FRAGMENTS = "${KERNEL_CONFIG_DIR}/audio_display.cfg ${KERNEL_CONFIG_DIR}/baseport.cfg \
                            ${KERNEL_CONFIG_DIR}/connectivity.cfg ${KERNEL_CONFIG_DIR}/ipc.cfg \
                            ${KERNEL_CONFIG_DIR}/power.cfg ${KERNEL_CONFIG_DIR}/wlan.cfg \
-                           ${KERNEL_CONFIG_DIR}/system_test.cfg ${KERNEL_CONFIG_DIR}/auto.cfg"
+                           ${KERNEL_CONFIG_DIR}/system_test.cfg ${KERNEL_CONFIG_DIR}/auto.cfg \
+                           ${KERNEL_CONFIG_DIR}/radio.cfg"
 
+KERNEL_CONFIG_FRAGMENTS_append_dra7xx = " ${KERNEL_CONFIG_DIR}/dra7_only.cfg"
 KERNEL_CONFIG_FRAGMENTS_append_ti33x = " ${KERNEL_CONFIG_DIR}/am33xx_only.cfg"
 KERNEL_CONFIG_FRAGMENTS_append_ti43x = " ${KERNEL_CONFIG_DIR}/am43xx_only.cfg"
 
