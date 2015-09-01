@@ -10,10 +10,8 @@ ARAGO_GLSDK_MULTIMEDIA = "\
     libdce \
     libav \
     libavformat \
-    omapdrmtest \
-    ti-ipc \
+    ti-ipc \ 
     omapconf \
-    ltp-ddt \
     iperf \
     bc \
     file \
@@ -26,9 +24,11 @@ ARAGO_GLSDK_MULTIMEDIA = "\
     gstreamer1.0-plugins-base-meta \
     gstreamer1.0-plugins-good-meta \
     gstreamer1.0-plugins-bad-meta \
-    gstreamer1.0-plugins-ducati \
-    gstreamer1.0-plugins-vpe \
     "
+#    ltp-ddt 
+#    omapdrmtest 
+#    gstreamer1.0-plugins-ducati 
+#    gstreamer1.0-plugins-vpe 
 
 ARAGO_GLSDK_MULTIMEDIA_append_dra7xx-evm = "\
    ipumm-fw \
@@ -46,8 +46,8 @@ ARAGO_GLSDK_WAYLAND = "\
 ARAGO_GLSDK_APPS = "\
     glsdk-example-apps \
     cpuloadgen \
-    img-pvr-sdk \
     "
+#    img-pvr-sdk 
 
 ARAGO_GLSDK_DEV = "\
     libgbm-dev \
